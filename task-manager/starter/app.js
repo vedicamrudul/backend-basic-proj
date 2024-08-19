@@ -1,25 +1,35 @@
 const express=require('express');
-require('./db/connect')
-const run=require('./db/connect')
-
+const connectDB = require('./db/connect');
+require('dotenv').config();
 const taskRoutes=require("./routes/tasks");
-
+const notFound=require("./middlewear/notFound");
+const errorHandlerMiddleware=require("./middlewear/errorHandlerMiddelwear");
 const app=express();
 
-const port=3000;
+const port= process.env.PORT || 3000;
+// before running the server, we can set the port in the console by using the command:  PORT=8000 nodemon app => instead of 8000 ofc you can essentially put wtv you want. 
 
+// middleware
 app.use(express.json())
+// app.use(express.static('./public'))
+
+// routes
 app.use('/api/v1/tasks', taskRoutes)
 
-const start=async()=>{
-    try{
-        await run().catch(console.dir);
-        app.listen(port, ()=>{
-            console.log(`Server is listening on port ${port}`)
-        })
-    }catch(e){
-        console.log(e)
-    }
-}
+app.use(notFound);
+// this notFound middlewear is used when no route is found. It basically sends a 404 error. 
+app.use(errorHandlerMiddleware);
 
-start()
+
+const start = async () => {
+    try {
+      await connectDB(process.env.MONGO_URI);
+      app.listen(port, () =>
+        console.log(`Server is listening on port ${port}...`)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  start();

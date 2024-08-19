@@ -1,0 +1,28 @@
+let us discuss the steps on how we made this.
+
+1. First, we created a new folder called task-manager. In that we created a folder called starter (this is not needed, we did it cuz there is another folder final with had the final project that we had to make- all ready from before). Then we had to work on the MVC model. We have to make a next app pehele toh, and install dotenv, express and mongoose; and as dev dependency, nodemon. After that we had to create a folder called Controllers=> inside that we made a file for tasks cuz its for crud of tasks. Here we will be making all the functions of getting, deleting the tasks basically all crud operations are ACTUALLY written here. We created the dummy methods of getTask, updateTask, etc, essentially all the crud operations. Then we created a folder called models=> inside that we made a file called taskModel.js. Here we made the schema of the task. Then we created a folder called routes=> inside that we made a file called taskRoutes.js. Here we made the routes of the tasks. We did that by using the controllers methods. Then in app.js we basically imported the routes, created a server with express and tested all the routes. 
+
+2. We made a .env file and put the mongoDB url in it. We also made a .gitignore file and put the .env file. This is where we connect our db. We made a folder called db inside which we made a connect.js file with the following code:
+
+const mongoose = require('mongoose')
+const connectDB = (url) => {return mongoose.connect(url, {})}
+module.exports = connectDB
+
+
+then we import this in app.js and run this-  await connectDB(process.env.MONGO_URI);
+before running the server. 
+
+3. Now since we have a model for tasks, we import that in our controller. It has different methods like create which we can access by Task.create()... this is provided by mongoose ig. So now we actually create the methods getTasks, and the other crud ones. 
+
+4. we come to middlewear now. First middlewear we create is asyncWrapper so that we dont have to write the try catch block for every route. We create a file called asyncWrapper.js inside a folder called middlewear. This has access to the next method which passes the error to the error handling middlewear (custom or express default). 
+
+i have explained the error handling things better in their respective files.
+
+The next middlewear we create is notFound middlewear for Route not found. We create a file called notFound.js inside a folder called middlewear. This is a simple middlewear that sends a 404 status and a message. In case a request is sent to a route that is not defined, this middlewear will be called. The job of this middlewear is only this, it is not linked to the upcoming error control mechanisms.
+
+Now the next one is errorHandlerMiddlewear. This is provided by express by default. Whenever an error object is passed using next, it automatically goes to this middlewear. We can however create a custom one which we are doing rn. We provide four parameters to this middlewear=> err, req,res,next=> so express automatically knows this is our custom errorhandlermiddlewear so with every error it will automatically go to this middlewear. 
+
+Now we create a folder called errors, where we create a file called customError.js. This is a class that extends the Error class. We can pass a message and a status code to this class. This is the class that we will use to create custom errors. Basically whenever we have an error that is not a server error, we will use this class to create that error. We will then pass it to our custom error middlewear.
+
+
+This is ofc not enough to understand the whole thing, but the jist of it is here.
