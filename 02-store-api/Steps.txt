@@ -1,0 +1,13 @@
+So first we created the errorhandlermiddlewear and the notFound middlewear cuz they remain more or less the same.
+
+Next we connected our mongoDB to our app using mongoose. Then we started the server in app.js to test.
+
+We created a controller file for products and created the methods for the routes. We also created a model file for products. GetAllProducts and getAllProductsStatic.
+
+Now we created two routes in the route folder=> products file, for the above controller functions.
+
+Then we wrote this in app.js :
+require('express-async-errors');
+This does the job of our asyncWrapper. We dont have to wrap our code in try catch cuz it automatically does that for us. 
+If we throw an error it will automatically pass it to our errorHandling middlewear which we previously (in the previous project) had to do manually. 
+
