@@ -1,6 +1,6 @@
 let us discuss the steps on how we made this.
 
-1. First, we created a new folder called task-manager. In that we created a folder called starter (this is not needed, we did it cuz there is another folder final with had the final project that we had to make- all ready from before). Then we had to work on the MVC model. We have to make a next app pehele toh, and install dotenv, express and mongoose; and as dev dependency, nodemon. After that we had to create a folder called Controllers=> inside that we made a file for tasks cuz its for crud of tasks. Here we will be making all the functions of getting, deleting the tasks basically all crud operations are ACTUALLY written here. We created the dummy methods of getTask, updateTask, etc, essentially all the crud operations. Then we created a folder called models=> inside that we made a file called taskModel.js. Here we made the schema of the task. Then we created a folder called routes=> inside that we made a file called taskRoutes.js. Here we made the routes of the tasks. We did that by using the controllers methods. Then in app.js we basically imported the routes, created a server with express and tested all the routes. 
+1. First, we created a new folder called task-manager. In that we created a folder called starter (this is not needed, we did it cuz there is another folder final with had the final project that we had to make- all ready from before). Then we had to work on the MVC (MVC- model view controller=> see the end where i have explained more) model. We have to make a next app pehele toh, and install dotenv, express and mongoose; and as dev dependency, nodemon. After that we had to create a folder called Controllers=> inside that we made a file for tasks cuz its for crud of tasks. Here we will be making all the functions of getting, deleting the tasks basically all crud operations are ACTUALLY written here. We created the dummy methods of getTask, updateTask, etc, essentially all the crud operations. Then we created a folder called models=> inside that we made a file called taskModel.js. Here we made the schema of the task. Then we created a folder called routes=> inside that we made a file called taskRoutes.js. Here we made the routes of the tasks. We did that by using the controllers methods. Then in app.js we basically imported the routes, created a server with express and tested all the routes. 
 
 2. We made a .env file and put the mongoDB url in it. We also made a .gitignore file and put the .env file. This is where we connect our db. We made a folder called db inside which we made a connect.js file with the following code:
 
@@ -26,3 +26,28 @@ Now we create a folder called errors, where we create a file called customError.
 
 
 This is ofc not enough to understand the whole thing, but the jist of it is here.
+
+
+
+MODEL VIEW CONTROLLER
+The MVC (Model-View-Controller) model is a design pattern used in software development to separate concerns and organize code in a structured way. Here's a brief overview:
+
+Model (SCHEMA IG KINDA):
+Represents the data and the business logic of the application.
+Interacts with the database and defines the schema for the data.
+Example: In a task management app, the taskModel.js file defines the schema for tasks.
+
+View (INTERFACE KINDA HTML IG):
+Represents the user interface of the application.
+Displays data to the user and sends user commands to the controller.
+Example: In a web application, views are often HTML files or templates.
+
+Controller (THE MIDDLEWARE, FUNCTIONS ETC):
+Acts as an intermediary between the Model and the View.
+Handles user input, manipulates data using the Model, and updates the View.
+Example: In a task management app, the taskController.js file contains functions for CRUD operations on tasks.
+Example in a Task Management App:
+Model: taskModel.js defines the schema for tasks.
+View: HTML files or templates that display tasks to the user.
+Controller: taskController.js contains functions like getTask, updateTask, etc., to handle CRUD operations.
+This separation helps in organizing code, making it more maintainable and scalable.

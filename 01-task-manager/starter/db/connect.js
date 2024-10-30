@@ -8,6 +8,8 @@ const connectDB = (url) => {
     // useUnifiedTopology: true,
 
     // so the issue i was having was all of these were deprecated
+
+    // (Deprecated Features: These are still available in the current version but are not recommended for use. They may be removed in future versions)
   })
 }
 

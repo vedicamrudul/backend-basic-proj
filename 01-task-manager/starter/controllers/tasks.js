@@ -1,6 +1,7 @@
 const Task = require('../Models/Task');
 const asyncWrapper=require("../middlewear/async");
 const { createCustomError } = require('../errors/CustomApiError');
+
 const getAllTasks= asyncWrapper( async (req,res)=>{
         const tasks=await Task.find({});
         // there are many conventions of sending data back to the client.

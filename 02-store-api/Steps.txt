@@ -11,3 +11,21 @@ require('express-async-errors');
 This does the job of our asyncWrapper. We dont have to wrap our code in try catch cuz it automatically does that for us. 
 If we throw an error it will automatically pass it to our errorHandling middlewear which we previously (in the previous project) had to do manually. 
 
+Next is to create a schema for the products. We did that in the models folder.
+New things to learn here in this step:
+1. createdAt:{
+        type:Date,
+        default:Date.now()
+    },
+    => we get the current date and time when the product was created. We have access to the Date object and there is a datatype for date in mongoose.
+
+2.  company:{
+        type:String,
+        enum:{
+            values:['ikea', 'liddy', 'caressa', 'marcos'],
+            message:'{VALUE} is not supported'
+        }
+    }
+    => enum is a datatype in mongoose. It is used to restrict the values that can be entered in the database. We can only enter the values that are in the values array. If we try to enter a value that is not in the array, we get the message that we have written.
+
+Now we wanted to add a lot of products in our database which is a difficult task. We have product.json with the json array of many products. To directly add this to the database we create a seperate connection and run it in the file populate.json. You only run this once by stopping your running server and using the command 'node populate'. In this file we start a connection seperately to the db and first we try using deleteMany() command which deletes any values previously existing in the db for this and then we try create() and pass our array to it which autimatically adds all products or all elements of the array to the db. Then we process.exit(0) with the code zero meaning everything was successful otherwise we exit with code of 1 which means things were not successful.

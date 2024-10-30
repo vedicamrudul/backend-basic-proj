@@ -5,10 +5,12 @@ const taskRoutes=require("./routes/tasks");
 const notFound=require("./middlewear/notFound");
 const errorHandlerMiddleware=require("./middlewear/errorHandlerMiddelwear");
 const app=express();
+const cors = require('cors');
 
 const port= process.env.PORT || 3000;
 // before running the server, we can set the port in the console by using the command:  PORT=8000 nodemon app => instead of 8000 ofc you can essentially put wtv you want. 
 
+app.use(cors());
 // middleware
 app.use(express.json())
 // app.use(express.static('./public'))
