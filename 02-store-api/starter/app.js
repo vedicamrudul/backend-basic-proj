@@ -13,11 +13,6 @@ const app=express();
 // middleware
 app.use(express.json());
 
-// routes
-app.get('/', (req, res)=>{
-    res.send('<h1>Store API</h1><a href="/api/v1/products">products route</a>');
-})
-
 // product routes
 app.use('/api/v1/products', productsRouter);
 app.use(notFoundMiddleware);
@@ -36,5 +31,5 @@ const start = async () => {
     }
   };
   
-  start();
+start();
 
