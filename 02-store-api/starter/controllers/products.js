@@ -4,6 +4,7 @@ productSchema = require("../models/product");
 
 const getAllProducts = async (req, res) => {
     const {featured,name,company, sort, fields, numericFilters}= req.query;
+    console.log(req.query);
     // page, limit.
 
     const queryObject={};
@@ -61,7 +62,7 @@ const getAllProducts = async (req, res) => {
     // 3-1=2=> 2*10=20. So 20th product se start hoga tumhara page 3 uptil the limit of 10 products.
 
     result=result.skip(skip).limit(limit);
-    console.log(result);
+    // console.log(result);
     const products=await result;
 
     res.status(200).json({products, nbHits: products.length});
@@ -69,6 +70,6 @@ const getAllProducts = async (req, res) => {
 
 
 module.exports={
-    getAllProducts,
-    getAllProductsStatic
+    getAllProducts
+    // getAllProductsStatic
 }
